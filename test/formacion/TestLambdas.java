@@ -2,6 +2,8 @@ package formacion;
 
 import org.junit.Test;
 
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.IntUnaryOperator;
 import java.util.function.LongBinaryOperator;
 
@@ -17,7 +19,7 @@ public class TestLambdas {
 	@Test
 	public void test_function() {
 		
-		IntUnaryOperator cuadrado = null;
+		IntUnaryOperator cuadrado = e -> e*e;
 		
 		assertEquals(0, cuadrado.applyAsInt(0));
 		assertEquals(1, cuadrado.applyAsInt(1));
@@ -32,7 +34,7 @@ public class TestLambdas {
 	@Test
 	public void test_funcion_2() {
 		
-		LongBinaryOperator menor = null;
+		LongBinaryOperator menor = Math::min;
 		
 		assertEquals(-2, menor.applyAsLong(-2, 3));
 		assertEquals(5, menor.applyAsLong(10, 5));
@@ -55,14 +57,23 @@ public class TestLambdas {
 		Persona personaSinSegundoApellido = new Persona ("nombre","apellido1",null);
 		Persona personaConSegundoApellido = new Persona ("nombre", "apellido1", "apellido2");
 		Persona personaNoPariente = new Persona ("nombre","otro","otro");
-		
+
 		// Cread una funcion que indique si el segundo apellido de una persona es null
-		
+		Function<Persona,Boolean> test= p -> p.getApellido2()==null;
+
+		assertEquals(true,test.apply(personaSinSegundoApellido));
+		assertEquals(false,test.apply(personaConSegundoApellido));
+
 		// Una funcion que nos diga si dos personas son parientes: para nosotros parientes
 		// son personas con el mismo primer apellido
-		
+		BiFunction<Persona, Persona, Boolean> test2= (p1,p2) -> p1.getApellido1().equals(p2.getApellido1());
+		assertEquals(true,test2.apply(personaConSegundoApellido,personaSinSegundoApellido));
+		assertEquals(false,test2.apply(personaConSegundoApellido, personaNoPariente));
+
 		// Una funcion que "enmascare" los datos de una persona: debe permutar los valores de sus
 		// y nombre
+
+
 	}
 	
 	

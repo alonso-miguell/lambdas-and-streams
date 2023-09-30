@@ -8,7 +8,9 @@ import java.util.List;
  * Estos requisitos son dinamicos (se pueden configurar durante la ejecucion), por lo que, 
  * en lugar de tener una comprobacion fija, tendremos una lista de validadores individuales.
  * El usuario de esta clase podra sumar validadores mediante un metodo add ( que teneis que implementar ).
- * El metodo valida debera devolver true si el objeto que se pasa como parametro cumple con todos los 
+
+
+ * El metodo valida debera devolver true si el objeto que se pasa como parametro cumple con todos los
  * validadores de la lista y false si no.
  * 
  * Para completar esta clase falta:
@@ -21,12 +23,15 @@ import java.util.List;
 public class Validador <T> {
 
 	// falta indicar el tipo de List
-	List validadores = new ArrayList<>();
+	List<T> validadores = new ArrayList<T>();
 	
 	public boolean valida(Object valor) { // cambiar Object por el tipo adecuado
 	   // true si pasa todos los validadores, falso si no
 		return true;
 	}
-	
+
 	// falta un metodo add que admite nuevas validaciones
+	public void add(T t){
+		validadores.add(t);
+	}
 }
