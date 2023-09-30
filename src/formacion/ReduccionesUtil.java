@@ -2,10 +2,11 @@ package formacion;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Para las soluciones de estos ejercicios utiliza streams, las 
- * operaciones intermedias que necesites y una operaci?n terminal
+ * operaciones intermedias que necesites y una operación terminal
  * con una estructura mutante.
  */
 public class ReduccionesUtil {
@@ -13,7 +14,7 @@ public class ReduccionesUtil {
 	/**
 	 * Devuelve una coleccion con los Strings de la lista original con:
 	 *  - los nulls eliminados del resultado
-	 *  - el resto pasado a may?sculas.
+	 *  - el resto pasado a mayúsculas.
 	 *  
 	 *  Es decir, si pasamos
 	 *  {"a",null,"b",null} debe devolver {"A","B"}
@@ -21,7 +22,7 @@ public class ReduccionesUtil {
 	 */
 	public Collection<String> obtenSinNulosYMayusculas(List<String> original) {
 		
-		return null;
+		return original.stream().filter( e-> e!=null).map(e -> e=e.toUpperCase()).collect(Collectors.toList());
 	}
 
 	/**
@@ -38,6 +39,19 @@ public class ReduccionesUtil {
 		 * y en la posicion 1 el recuento de impares
 		 */
 		int[] acumular = {0,0};
+
+		//En bloque de codigo
+//		numeros.stream().forEach( e-> {
+//			if (e % 2 == 0) {
+//				acumular[0] += 1;
+//			} else {
+//				acumular[1] += 1;
+//			}
+//		} );
+
+		//O en una sola linea
+		numeros.stream().forEach(it -> acumular[it % 2] += 1);
+
 		
 		
 		return acumular;
