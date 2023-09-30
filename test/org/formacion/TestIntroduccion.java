@@ -1,13 +1,14 @@
 package org.formacion;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class TestIntroduccion {
 
@@ -21,7 +22,8 @@ public class TestIntroduccion {
 		// segun la longitud de MAYOR a MENOR (es decir, al contrario que el ejemplo de
 		// la presentacion.
 		// * solo debes modificar la siguiente linea, el resto de codigo debe quedar igual *
-		Comparator<String> comparadorLongitud = null;
+//		Comparator<String> comparadorLongitud = null;
+		Comparator<String> comparadorLongitud = (a,b) -> b.length() - a.length();
 
 		assertNotNull("No has creado aun el comparador",comparadorLongitud);
 		
